@@ -1,9 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import bacground from "../images/Empty.svg";
 
+import { deleteOrder } from "../futures/dessertSlice";
+
 function Card() {
   const dispatch = useDispatch();
-  const { ordered, totalPrice, deleteOrder, orderTotal } = useSelector(
+  const { ordered, totalPrice, orderTotal } = useSelector(
     (dessert) => dessert.orders
   );
   const handleRemuve = (id) => {
@@ -21,7 +23,7 @@ function Card() {
             const singlePrice = desert.amout * desert.price;
 
             return (
-              <div>
+              <div key={desert.id}>
                 <div className="mt-[33px] flex justify-between items-center">
                   <div>
                     <h1 className="font-semibold">{desert.name}</h1>
@@ -38,6 +40,7 @@ function Card() {
                     </div>
                   </div>
                   <button
+                    type="button"
                     onClick={() => handleRemuve(desert.id)}
                     className="flex items-center"
                   >
@@ -74,7 +77,7 @@ function Card() {
           <div className="flex mt-8 font-mono">
             <h1 className="flex">Order Total</h1>
             <br />
-            <h1 className="font-semibold text-xl ml-[180px]">${totalPrice}</h1>
+            <h1 className="font-semibold text-xl ml-[150px]">${totalPrice}</h1>
           </div>
           <button className="text-white h-14 mt-5 w-full rounded-lg bg-[#C73B0F]">
             Confirm Order

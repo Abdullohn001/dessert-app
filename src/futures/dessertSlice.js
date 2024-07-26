@@ -34,11 +34,11 @@ export const dessertSlice = createSlice({
       }
       dessertSlice.caseReducers.calculateTotal(state);
     },
-    clearOrder: (state) => {},
+
     deleteOrder: (state, { payload }) => {
-      const item = state.allDeserts.find((dessert) => dessert.id === payload);
+      const item = state.allDeserts.find((dessert) => dessert.id == payload);
       if (item) {
-        item.amount = 0;
+        item.amout = 0;
       }
       dessertSlice.caseReducers.calculateTotal(state);
     },
